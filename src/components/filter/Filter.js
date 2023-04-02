@@ -1,7 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { FilterSection, FilterLabel, FilterInput } from './Filter.styled';
-import PropTypes from 'prop-types';
+import { getFiltered } from 'redux/selectors';
+import { setFilterValue } from 'redux/filtersSlice';
 
-export const Filter = ({ onChange, filter }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFiltered);
+
+  const getVisibleContacts = evt => {
+    dispatch(setFilterValue(evt.target.value));
+    console.log(filter);
+  };
+
   return (
     <FilterSection>
       <FilterLabel htmlFor="filter">
@@ -9,15 +19,14 @@ export const Filter = ({ onChange, filter }) => {
         <FilterInput
           name="filter"
           placeholder="Find"
-          onChange={onChange}
-          value={filter}
+          onChange={getVisibleContacts}
         />
       </FilterLabel>
     </FilterSection>
   );
 };
 
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   filter: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };

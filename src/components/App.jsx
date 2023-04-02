@@ -17,50 +17,50 @@ const getInitialContacts = () => {
 };
 
 export const App = () => {
-  const [contacts, setContacts] = useState(getInitialContacts);
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(getInitialContacts);
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   
-  const handleFilterInput = evt => { 
-    setFilter(evt.target.value)
-  }
+  // const handleFilterInput = evt => { 
+  //   setFilter(evt.target.value)
+  // }
 
-  const getFindContact = () => {
-    const normalizedFilter = filter.toLowerCase();
+  // const getFindContact = () => {
+  //   const normalizedFilter = filter.toLowerCase();
    
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)) 
+  //   return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)) 
     
-  }
+  // }
 
   
-   const addContact = newContact => {
-    const normalizeName = newContact.name.toLowerCase();
-    contacts.find(
-      (contact) => contact.name.toLowerCase() === normalizeName
-    )
-      ? alert(`${normalizeName} is already on contacts`)
-      : setContacts((prewContacts) => [newContact, ...prewContacts]);
-  };
+  //  const addContact = newContact => {
+  //   const normalizeName = newContact.name.toLowerCase();
+  //   contacts.find(
+  //     (contact) => contact.name.toLowerCase() === normalizeName
+  //   )
+  //     ? alert(`${normalizeName} is already on contacts`)
+  //     : setContacts((prewContacts) => [newContact, ...prewContacts]);
+  // };
 
-  const deleteContact = contactId => { 
-    setContacts(pervState => { 
-      return (
-        pervState.filter(contact => contact.id !== contactId)
-      )
-    })
-  }
+  // const deleteContact = contactId => { 
+  //   setContacts(pervState => { 
+  //     return (
+  //       pervState.filter(contact => contact.id !== contactId)
+  //     )
+  //   })
+  // }
 
     return (
     <Layout>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <h2>Contacts</h2>
-      <Filter onChange={handleFilterInput} filter={filter} />
-      <ContactList contacts={getFindContact()} onDelete={deleteContact} />
+      <Filter />
+      <ContactList />
       <GlobalStyle />
     </Layout>
   )
